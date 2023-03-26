@@ -26,10 +26,10 @@ python Main.py
 效果会在摄像头上标出红领巾的位置
 具体如下：
 
-![Alt](./images/1.png)
-![Alt](./images/2.png)
-![Alt](./images/3.png)
-![Alt](./images/4.png)
+![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/cff41e0db1389/cff41e0db1389.png)
+![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/0a092fc915e01/0a092fc915e01.png)
+![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/e3ae881678b06/e3ae881678b06.png)
+![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/5e4480633b783/5e4480633b783.png)
 </details>
 
 ## <div align="center">模型</div>
@@ -47,11 +47,11 @@ python Main.py
 本项目通过[爬虫](GetImage.py)，[拍摄](Picture.py)两种方式进行数据采集
 
 拍摄过程中共进行了5次数据迭代，第一代由于数据单一，且验证集过小失败。第二代增加了网络数据，不过手动的下载显得慢二累赘。故，第三代采用爬虫，但是爬虫数据大多不符合要求数据量不够打。第四代增加了600张自己拍摄的照片，但是服装，方式单一，没有很好的效果。在第五代，增加了各种复杂环境进行识别，在134次epoch后，mAP50-95达到了55.62，mAP50达到了89.61。实现了较好的识别，能适应复杂情况
-![Alt](./images/5.png)
-![Alt](./images/6.png)
-![Alt](./images/7.png)
-![Alt](./images/8.png)
-![Alt](./images/9.png)
+![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/f80ba3ad0f32e/f80ba3ad0f32e.png)
+![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/03ad0ac03c0a9/03ad0ac03c0a9.png)
+![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/b06c9185498d8/b06c9185498d8.png)
+![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/1558199e7e708/1558199e7e708.png)
+![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/dbdc621009c47/dbdc621009c47.png)
 具体数据在[此](/data/data.zip)
 
 最重要的是，本项目并没有采用传统的手动标注思想，而是采用了半监督学习化的自动标注，大大的节省了人力，我仅标注了50张图片，它即可标注800张，颇为高效。
