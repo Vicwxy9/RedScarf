@@ -12,18 +12,18 @@ def plot_one_box(box:np.ndarray, img:np.ndarray, color:Tuple[int, int, int] = No
     tl = line_thickness or round(0.002 * (img.shape[0] + img.shape[1]) / 2) + 1 
     color = color
     c1, c2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
+    
+    blk = np.zeros(img.shape, np.uint8)  
     cv2.rectangle(img, c1, c2, color, thickness=tl, lineType=cv2.LINE_AA)
+    cv2.rectangle(blk, c1, c2, (255, 0, 0), -1)
+    img = cv2.addWeighted(img, 1.0, blk, 0.25, 1)
+    
     if label:
         tf = max(tl - 1, 1)
         t_size = cv2.getTextSize(label, 0, fontScale=tl / 3, thickness=tf)[0]
-        c2 = c1[0] + t_size[0], c1[1] - t_size[1] - 3
+        c2 = c1[0] + int(box[2]) - int(box[0]), c1[1] - t_size[1] - 3
         cv2.rectangle(img, c1, c2, color, -1, cv2.LINE_AA)
         cv2.putText(img, label, (c1[0], c1[1] - 2), 0, tl / 3, [225, 255, 255], thickness=tf, lineType=cv2.LINE_AA)
-    if mask is not None:
-        image_with_mask = img.copy()
-        mask
-        cv2.fillPoly(image_with_mask, pts=[mask.astype(int)], color=color)
-        img = cv2.addWeighted(img, 0.5, image_with_mask, 0.5, 1)
     return img
 
 def draw_results(results:Dict, source_image:np.ndarray):
