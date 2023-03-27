@@ -133,8 +133,9 @@ def detect(image:np.ndarray, model:Model):
     detections = postprocess(pred_boxes=boxes, input_hw=input_hw, orig_img=image, pred_masks=masks)
     return detections
 
-DET_MODEL_NAME = "/best"
+DET_MODEL_NAME = "best"
 det_model_path = Path(f"./{DET_MODEL_NAME}_openvino_model/{DET_MODEL_NAME}.xml")
+
 core = Core()
 det_ov_model = core.read_model(det_model_path)
 device = "CPU" 
