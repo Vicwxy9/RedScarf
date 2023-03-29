@@ -1,7 +1,7 @@
 <div align="center">
   <p>
     <a href="https://github.com/Vicwxy9/RedScarf" target="_blank">
-      <img width="100%" src="https://s2.xptou.com/2023/03/29/6424406269ce0.png"></a>
+      <img width="100%" src="https://i.328888.xyz/2023/03/29/ik78i3.png"></a>
   </p>
 </div>
 
@@ -31,11 +31,57 @@ pip install -r requirements.txt
 python Main.py
 ```
 效果会在摄像头上标出人和红领巾的位置，若未戴红领巾则为黄色，若带了则为绿色
-具体如下：
+具体如下(所有图片均使用图床，如果需要请到data/images寻找)：
 
-![1.png](https://s2.loli.net/2023/03/29/kgPoAe8z1u2M9iX.png) | ![2.png](https://s2.loli.net/2023/03/29/6HgwoyC1UuTRSEO.png) | ![3.png](https://s2.loli.net/2023/03/29/tq4m6ajyPWXNBhR.png)
---- | --- | ---
+![ikxYOt.png](https://i.328888.xyz/2023/03/29/ikxYOt.png) | ![ikxQZX.png](https://i.328888.xyz/2023/03/29/ikxQZX.png) 
+--- | ---
+![ikxqeJ.png](https://i.328888.xyz/2023/03/29/ikxqeJ.png) | ![ikxuac.png](https://i.328888.xyz/2023/03/29/ikxuac.png)
+![ik7i0A.png](https://i.328888.xyz/2023/03/29/ik7i0A.png) | ![ik7kaa.png](https://i.328888.xyz/2023/03/29/ik7kaa.png)
+![ik7D5b.png](https://i.328888.xyz/2023/03/29/ik7D5b.png) | ![ik7Ard.png](https://i.328888.xyz/2023/03/29/ik7Ard.png)
+![ik7nZq.png](https://i.328888.xyz/2023/03/29/ik7nZq.png) | ![ik7tOz.png](https://i.328888.xyz/2023/03/29/ik7tOz.png)
+![ik7Wzw.png](https://i.328888.xyz/2023/03/29/ik7Wzw.png) | ![ik7C0x.png](https://i.328888.xyz/2023/03/29/ik7C0x.png)
 </details>
+
+## <div align="center">说明</div>
+
+<details open><summary>项目架构</summary>
+
+```bash
+  data
+    |- images (markdown图片)
+    |- datasets.zip (数据集)
+    |- models.zip (原始未经优化 pt onnx 模型)
+  detector
+    |-persondetector.py (人体检测封装函数库)
+    |-redscarfdetector.py (红领巾检测封装函数库)
+  models
+    |-redscarf_openvino_model (红领巾优化后OpenVINO 模型)
+    |-yolov8n_openvino_model (人体检测优化后OpenVINO 模型)
+  tools
+    |-ChangeToOpenVINO.py (模型转换)
+    |-GetImage.py (百度图片爬虫)
+    |-Json2txt.py (数据集转换)
+    |-Picture.py (摄像头数据采集)
+  Log.py (日志文件)
+  Main.py (主程序)
+  Train.ipynb (在Colab上的模型训练文件及过程)
+```
+
+</details>
+
+<details open><summary>项目设计方案</summary>
+
+本程序首先通过数据采集，和训练的方式得到了一个模型，可以较好地检测红领巾
+
+随机此模型性能较差，单单一个模型既需要 150ms 的推理时间，故我通过OpenVINO的方式优化了模型，使得它能达到 50ms 的推理时间，大大减少了性能损耗
+
+同时我亦使用了官方预训练模型，进行人体检测，只要红领巾在此人体范围之内，及判断改人戴了红领巾（此方法有缺点，便是红领巾拿在手上会被误检成戴了红领巾）
+
+最后，通过cv2的绘图工具进行绘图，得到结果
+
+</details>
+
+
 
 ## <div align="center">模型</div>
 
@@ -52,21 +98,27 @@ python Main.py
 本项目通过[爬虫](GetImage.py)，[拍摄](Picture.py)两种方式进行数据采集
 
 拍摄过程中共进行了5次数据迭代，第一代由于数据单一，且验证集过小失败。第二代增加了网络数据，不过手动的下载显得慢二累赘。故，第三代采用爬虫，但是爬虫数据大多不符合要求数据量不够打。第四代增加了600张自己拍摄的照片，但是服装，方式单一，没有很好的效果。在第五代，增加了各种复杂环境进行识别，在134次epoch后，mAP50-95达到了55.62，mAP50达到了89.61。实现了较好的识别，能适应复杂情况
-![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/f80ba3ad0f32e/f80ba3ad0f32e.png)
-![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/03ad0ac03c0a9/03ad0ac03c0a9.png)
-![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/b06c9185498d8/b06c9185498d8.png)
-![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/1558199e7e708/1558199e7e708.png)
-![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/dbdc621009c47/dbdc621009c47.png)
+![ik7lXk.png](https://i.328888.xyz/2023/03/29/ik7lXk.png)
+![ik7wJL.png](https://i.328888.xyz/2023/03/29/ik7wJL.png)
+![ik7HDp.png](https://i.328888.xyz/2023/03/29/ik7HDp.png)
+![ik7O3U.png](https://i.328888.xyz/2023/03/29/ik7O3U.png)
+![ik7b5v.png](https://i.328888.xyz/2023/03/29/ik7b5v.png)
 具体数据在[此](/data/data.zip)
 
 最重要的是，本项目并没有采用传统的手动标注思想，而是采用了半监督学习化的自动标注，大大的节省了人力，我仅标注了50张图片，它即可标注800张，颇为高效。
 
 </details>
 
+
+
 ## <div align="center">不足</div>
 
-本项目由于时间原因，没有做UI，没有增加自动识别功能，数据集也不够大，mAP没有达到极限。
-并且本项目没有适配大多数机型，没有打包exe。
+1.本项目由于时间原因，没有做UI。
+
+2.训练数据集不够完善，导致mAP没有达到极限。
+
+3.本项目没有适配大多数机型（OpenVINO 有局限性），没有打包exe。
+
 在后续的学习中我会不断更近此项目，如有疑问请发issue
 
 

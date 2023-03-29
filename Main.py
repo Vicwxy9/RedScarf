@@ -1,8 +1,9 @@
-from PersonDetector import PersonDetector
-from RedScarfDetector import RedScarfDetector
+from detector.persondetector import PersonDetector
+from detector.redscarfdetector import RedScarfDetector
+from Log import log
 from pathlib import Path
 from openvino.runtime import Core
-from Log import log
+
 import cv2
 
 PERSON_MODEL_NAME = "yolov8n"
