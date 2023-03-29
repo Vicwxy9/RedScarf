@@ -103,7 +103,7 @@ python Main.py
 ![ik7HDp.png](https://i.328888.xyz/2023/03/29/ik7HDp.png)
 ![ik7O3U.png](https://i.328888.xyz/2023/03/29/ik7O3U.png)
 ![ik7b5v.png](https://i.328888.xyz/2023/03/29/ik7b5v.png)
-具体数据在[此](/data/data.zip)
+具体数据在[此](/data/datasets.zip)
 
 最重要的是，本项目并没有采用传统的手动标注思想，而是采用了半监督学习化的自动标注，大大的节省了人力，我仅标注了50张图片，它即可标注800张，颇为高效。
 
