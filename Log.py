@@ -1,2 +1,5 @@
+import datetime
+
 def log(str:str):
-    print(f'[INFO] {str}')
+    datetime_object = datetime.datetime.now()
+    print(f'[{datetime_object} INFO] {str}')

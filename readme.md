@@ -1,3 +1,10 @@
+<div align="center">
+  <p>
+    <a href="https://github.com/Vicwxy9/RedScarf" target="_blank">
+      <img width="100%" src="https://s2.xptou.com/2023/03/29/6424406269ce0.png"></a>
+  </p>
+</div>
+
 ## <div align="center">前景</div>
 
 在我校行为规范管理的背景下，我突发奇想，想使用AI帮助规范检查。于是，这个项目便产生了。[Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics)的支持下完成的.[Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics) 是由 [Ultralytics](https://ultralytics.com) 开发的一个前沿的SOTA 模型。它在以前成功的 YOLO 版本基础上，引入了新的功能和改进，进一步提升了其性能和灵活性。基于快速、准确和易于使用的设计理念，使其成为广泛的目标检测、图像分割和图像分类任务的绝佳选择。
@@ -23,13 +30,11 @@ pip install -r requirements.txt
 ```bash
 python Main.py
 ```
-效果会在摄像头上标出红领巾的位置
+效果会在摄像头上标出人和红领巾的位置，若未戴红领巾则为黄色，若带了则为绿色
 具体如下：
 
-![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/cff41e0db1389/cff41e0db1389.png)
-![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/0a092fc915e01/0a092fc915e01.png)
-![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/e3ae881678b06/e3ae881678b06.png)
-![Alt](https://s.imgkb.xyz/abcdocker/2023/03/26/5e4480633b783/5e4480633b783.png)
+![1.png](https://s2.loli.net/2023/03/29/kgPoAe8z1u2M9iX.png) | ![2.png](https://s2.loli.net/2023/03/29/6HgwoyC1UuTRSEO.png) | ![3.png](https://s2.loli.net/2023/03/29/tq4m6ajyPWXNBhR.png)
+--- | --- | ---
 </details>
 
 ## <div align="center">模型</div>
