@@ -5,6 +5,7 @@ from pathlib import Path
 from openvino.runtime import Core
 
 import cv2
+import time
 
 PERSON_MODEL_NAME = "yolov8n"
 REDSCARF_MODEL_NAME = "redscarf"
@@ -30,11 +31,18 @@ cap=cv2.VideoCapture(0)
 log("Loading complete. Initiation recognition.....")
 
 while True:
+    start_time = time.time()
+    
     _, frame=cap.read()
     RedScarfs = []
     res, RedScarfs = RedScarfDetector(frame, frame, redscarf_compiled_model)
-    res            = PersonDetector(  res,   frame, person_compiled_model, show=True, redscrafs=RedScarfs)
+    res            = PersonDetector(  res,   frame, person_compiled_model, redscrafs=RedScarfs)
+    
+    fps = 1 / (time.time() - start_time)
+    fps_text = f"FPS: {fps:.2f}"
+    color = (0,0,0)
+    cv2.putText(res, fps_text, (int(res.shape[1]/2)-int((len(fps_text))*9), 30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2, cv2.LINE_AA)
+    cv2.imshow("Demo", res)
     
     if cv2.waitKey(1) == 27:
         break
-
